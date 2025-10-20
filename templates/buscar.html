@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Buscar clientes</h2>
+<form method="get" class="mb-3">
+  {{ form.q.label_tag }} {{ form.q }}
+  <button class="btn btn-secondary">Buscar</button>
+</form>
+{% if q %}
+  <h4>Resultados para '{{ q }}'</h4>
+  <ul>
+  {% for r in resultados %}
+    <li>{{ r.nombre }} — {{ r.email }} — {{ r.telefono }}</li>
+  {% empty %}
+    <li>No se encontraron clientes.</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+{% endblock %}

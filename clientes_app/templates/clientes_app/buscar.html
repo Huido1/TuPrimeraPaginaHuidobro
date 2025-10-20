@@ -1,0 +1,21 @@
+{% extends 'clientes_app/base.html' %}
+{% block title %}Buscar Cliente{% endblock %}
+{% block content %}
+<h2 class="mb-4">Buscar Cliente</h2>
+<form method="post" class="card p-4 shadow mb-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success mt-3">Buscar</button>
+</form>
+
+{% if resultados %}
+    <h4>Resultados:</h4>
+    <ul class="list-group mt-3">
+        {% for cliente in resultados %}
+            <li class="list-group-item">{{ cliente.nombre }} - {{ cliente.email }}</li>
+        {% endfor %}
+    </ul>
+{% elif resultados is not None %}
+    <p>No se encontraron clientes.</p>
+{% endif %}
+{% endblock %}
